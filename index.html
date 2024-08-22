@@ -41,19 +41,26 @@
         width: 500px;
         animation: animate 1.3s infinite;
       }
-      .name {
+      h1 {
         position: absolute;
-        top: 30%;
-        right: 45.2%;
+        top: 33%;
+        left: 50%; /* Đặt phần tử tại vị trí giữa theo chiều ngang */
         color: #ff5ca4;
+        transform: translateX(
+          -50%
+        ); /* Dịch chuyển phần tử ngược lại 50% chiều rộng của nó để căn giữa */
       }
-      .name2 {
+
+      h2 {
         position: absolute;
-        top: 43%;
-        right: 47.5%;
+        top: 44%;
+        left: 50%; /* Đặt phần tử tại vị trí giữa theo chiều ngang */
         color: #ff5ca4;
+        transform: translateX(
+          -50%
+        ); /* Dịch chuyển phần tử ngược lại 50% chiều rộng của nó để căn giữa */
       }
-      #pinkboard:before,
+      s #pinkboard:before,
       #pinkboard:after {
         content: "";
         position: absolute;

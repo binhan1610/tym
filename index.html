@@ -55,9 +55,6 @@
             font-weight: bold;
             color: white;
         }
-        .icons{
-  
-        }
     </style>
 </head>
 <body>
@@ -65,31 +62,31 @@
         <div class="lixi" onclick="flip(this)">
             <div class="card">
                 <div class="front"></div>
-                <div class="back">20.000đ</div>
+                <div class="back"></div>
             </div>
         </div>
         <div class="lixi" onclick="flip(this)">
             <div class="card">
                 <div class="front"></div>
-                <div class="back">30.000đ</div>
+                <div class="back"></div>
             </div>
         </div>
         <div class="lixi" onclick="flip(this)">
             <div class="card">
                 <div class="front"></div>
-                <div class="back">50.000đ</div>
+                <div class="back"></div>
             </div>
         </div>
         <div class="lixi" onclick="flip(this)">
             <div class="card">
                 <div class="front"></div>
-                <div class="back">10.000đ</div>
+                <div class="back"></div>
             </div>
         </div>
         <div class="lixi" onclick="flip(this)">
             <div class="card">
                 <div class="front"></div>
-                <div class="back">20.000đ</div>
+                <div class="back"></div>
             </div>
         </div>
     </div>
@@ -98,6 +95,14 @@
         function flip(element) {
             element.classList.toggle('flipped');
         }
+
+        function getRandomMoney() {
+            return '10.000' + 'đ';
+        }
+
+        document.querySelectorAll('.back').forEach(back => {
+            back.textContent = getRandomMoney();
+        });
     </script>
 </body>
 </html>

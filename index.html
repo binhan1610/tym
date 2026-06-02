@@ -1,388 +1,385 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gửi Kim Anh</title>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
-  <head>
-    <title>Heart</title>
-    <meta name="Generator" content="EditPlus" />
-    <meta name="Author" content="" />
-    <meta name="Keywords" content="" />
-    <meta name="Description" content="" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-    <style>
-      html,
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow: hidden;
+      font-family: "Georgia", "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 185, 205, 0.45), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(255, 90, 130, 0.28), transparent 40%),
+        linear-gradient(135deg, #190015, #321026 45%, #14000f);
+      color: #fff;
+    }
+
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      position: relative;
+      width: min(760px, 94vw);
+      max-height: 88vh;
+      overflow: hidden;
+      padding: 42px 46px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.11);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.45),
+        inset 0 0 40px rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(18px);
+      animation: cardIn 1.2s ease forwards;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+      transform: translateX(-100%);
+      animation: shine 5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .title {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: #ffe2ec;
+      text-shadow: 0 0 18px rgba(255, 130, 170, 0.55);
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeLine 1s ease forwards;
+      animation-delay: 0.4s;
+    }
+
+    .subtitle {
+      margin: 0 0 28px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(255, 231, 238, 0.72);
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeLine 1s ease forwards;
+      animation-delay: 0.8s;
+    }
+
+    .letter {
+      position: relative;
+      z-index: 1;
+      line-height: 1.9;
+      font-size: clamp(17px, 2.3vw, 21px);
+      color: rgba(255, 246, 249, 0.95);
+    }
+
+    .line {
+      display: block;
+      opacity: 0;
+      transform: translateY(18px);
+      filter: blur(5px);
+      animation: revealLine 0.9s ease forwards;
+    }
+
+    .line:nth-child(1) { animation-delay: 1.3s; }
+    .line:nth-child(2) { animation-delay: 2.1s; }
+    .line:nth-child(3) { animation-delay: 2.9s; }
+    .line:nth-child(4) { animation-delay: 3.7s; }
+    .line:nth-child(5) { animation-delay: 4.5s; }
+    .line:nth-child(6) { animation-delay: 5.3s; }
+    .line:nth-child(7) { animation-delay: 6.1s; }
+    .line:nth-child(8) { animation-delay: 6.9s; }
+    .line:nth-child(9) { animation-delay: 7.7s; }
+    .line:nth-child(10) { animation-delay: 8.5s; }
+
+    .signature {
+      margin-top: 28px;
+      text-align: right;
+      font-size: clamp(20px, 3vw, 28px);
+      color: #ffd1df;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeLine 1.2s ease forwards;
+      animation-delay: 9.5s;
+    }
+
+    .heart-main {
+      position: absolute;
+      right: 38px;
+      top: 34px;
+      width: 38px;
+      height: 38px;
+      transform: rotate(-45deg);
+      background: #ff4f7b;
+      box-shadow: 0 0 28px rgba(255, 79, 123, 0.9);
+      animation: heartbeat 1.5s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    .heart-main::before,
+    .heart-main::after {
+      content: "";
+      position: absolute;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #ff4f7b;
+    }
+
+    .heart-main::before {
+      top: -19px;
+      left: 0;
+    }
+
+    .heart-main::after {
+      left: 19px;
+      top: 0;
+    }
+
+    .floating-heart {
+      position: absolute;
+      bottom: -40px;
+      width: 16px;
+      height: 16px;
+      background: rgba(255, 111, 148, 0.9);
+      transform: rotate(-45deg);
+      animation: floatUp linear infinite;
+      opacity: 0.85;
+    }
+
+    .floating-heart::before,
+    .floating-heart::after {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: inherit;
+    }
+
+    .floating-heart::before {
+      top: -8px;
+      left: 0;
+    }
+
+    .floating-heart::after {
+      top: 0;
+      left: 8px;
+    }
+
+    .floating-heart:nth-child(1) { left: 8%; animation-duration: 8s; animation-delay: 0s; }
+    .floating-heart:nth-child(2) { left: 18%; animation-duration: 11s; animation-delay: 1.5s; transform: rotate(-45deg) scale(0.75); }
+    .floating-heart:nth-child(3) { left: 32%; animation-duration: 9s; animation-delay: 2s; transform: rotate(-45deg) scale(1.2); }
+    .floating-heart:nth-child(4) { left: 47%; animation-duration: 12s; animation-delay: 0.8s; transform: rotate(-45deg) scale(0.9); }
+    .floating-heart:nth-child(5) { left: 61%; animation-duration: 10s; animation-delay: 2.8s; transform: rotate(-45deg) scale(1.1); }
+    .floating-heart:nth-child(6) { left: 74%; animation-duration: 13s; animation-delay: 1s; transform: rotate(-45deg) scale(0.7); }
+    .floating-heart:nth-child(7) { left: 88%; animation-duration: 9.5s; animation-delay: 3s; }
+
+    .spark {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.8);
+      box-shadow: 0 0 12px rgba(255,255,255,0.9);
+      animation: twinkle 3s ease-in-out infinite;
+    }
+
+    .spark.s1 { top: 16%; left: 12%; animation-delay: 0.2s; }
+    .spark.s2 { top: 24%; right: 18%; animation-delay: 1.1s; }
+    .spark.s3 { bottom: 18%; left: 22%; animation-delay: 1.8s; }
+    .spark.s4 { bottom: 26%; right: 12%; animation-delay: 0.7s; }
+    .spark.s5 { top: 58%; left: 8%; animation-delay: 2.2s; }
+
+    .hint {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: Arial, sans-serif;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 13px;
+      letter-spacing: 1px;
+      opacity: 0;
+      animation: fadeLine 1s ease forwards;
+      animation-delay: 10.3s;
+    }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(34px) scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes revealLine {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes fadeLine {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: rotate(-45deg) scale(1); }
+      14% { transform: rotate(-45deg) scale(1.18); }
+      28% { transform: rotate(-45deg) scale(1); }
+      42% { transform: rotate(-45deg) scale(1.12); }
+      70% { transform: rotate(-45deg) scale(1); }
+    }
+
+    @keyframes floatUp {
+      0% {
+        bottom: -50px;
+        opacity: 0;
+      }
+      12% {
+        opacity: 0.8;
+      }
+      100% {
+        bottom: 110vh;
+        opacity: 0;
+        margin-left: 80px;
+      }
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0.15;
+        transform: scale(0.8);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.6);
+      }
+    }
+
+    @keyframes shine {
+      0%, 60% {
+        transform: translateX(-120%);
+      }
+      80%, 100% {
+        transform: translateX(120%);
+      }
+    }
+
+    @media (max-width: 600px) {
       body {
-        height: 100%;
-        padding: 0;
-        margin: 0;
-
-        /* Ảnh nền */
-        background-image: url('download.jpeg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        overflow-y: auto;
       }
 
-      .box {
-        width: 100%;
-        max-width: 500px;
-        position: relative;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
+      .scene {
+        height: auto;
+        min-height: 100vh;
+        padding: 18px;
       }
 
-      canvas {
-        position: absolute;
-        width: 100%;
-        height: 100%;
+      .card {
+        max-height: none;
+        padding: 34px 24px;
       }
 
-      #pinkboard {
-        position: relative;
-        margin: auto;
-        height: 500px;
-        width: 500px;
-        animation: animate 1.3s infinite;
+      .heart-main {
+        width: 26px;
+        height: 26px;
+        right: 24px;
+        top: 24px;
       }
 
-      #name {
-        position: absolute;
-        top: 44%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: #ff5ca4;
-        font-size: 28px;
-        font-weight: bold;
-        text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+      .heart-main::before,
+      .heart-main::after {
+        width: 26px;
+        height: 26px;
       }
 
-      #pinkboard:before,
-      #pinkboard:after {
-        content: "";
-        position: absolute;
-        background: #ff5ca4;
-        width: 100px;
-        height: 160px;
-        border-top-left-radius: 50px;
-        border-top-right-radius: 50px;
+      .heart-main::before {
+        top: -13px;
       }
 
-      #pinkboard:before {
-        left: 100px;
-        transform: rotate(-45deg);
-        transform-origin: 0 100%;
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-          0 10px 10px rgba(0, 0, 0, 0.22);
+      .heart-main::after {
+        left: 13px;
       }
 
-      #pinkboard:after {
-        left: 0;
-        transform: rotate(45deg);
-        transform-origin: 100% 100%;
+      .subtitle {
+        letter-spacing: 3px;
       }
 
-      @keyframes animate {
-        0% {
-          transform: scale(1);
-        }
-        30% {
-          transform: scale(0.8);
-        }
-        60% {
-          transform: scale(1.2);
-        }
-        100% {
-          transform: scale(1);
-        }
+      .hint {
+        display: none;
       }
-    </style>
-  </head>
+    }
+  </style>
+</head>
 
-  <body>
-    <div class="box">
-      <h1 id="name">Girl Chu Choa Mờ</h1>
-      <canvas id="pinkboard"></canvas>
+<body>
+  <div class="scene">
+    <div class="floating-heart"></div>
+    <div class="floating-heart"></div>
+    <div class="floating-heart"></div>
+    <div class="floating-heart"></div>
+    <div class="floating-heart"></div>
+    <div class="floating-heart"></div>
+    <div class="floating-heart"></div>
+
+    <div class="spark s1"></div>
+    <div class="spark s2"></div>
+    <div class="spark s3"></div>
+    <div class="spark s4"></div>
+    <div class="spark s5"></div>
+
+    <div class="card">
+      <div class="heart-main"></div>
+
+      <h1 class="title">Gửi Kim Anh</h1>
+      <p class="subtitle">một lời xin lỗi từ nỗi nhớ</p>
+
+      <div class="letter">
+        <span class="line">Kim Anh à, anh viết những dòng này trong một buổi mà nỗi nhớ cứ lặng lẽ ngồi cạnh anh, giống như em đang ở rất gần mà anh lại chẳng thể chạm tới.</span>
+        <span class="line">Anh biết, có những lúc anh đã vô tâm, đã nói những câu không đủ dịu dàng, đã để em phải buồn vì một người đáng ra phải thương em nhiều hơn tất cả.</span>
+        <span class="line">Anh xin lỗi em. Không phải một lời xin lỗi cho xong, mà là lời xin lỗi của một người thật sự thấy lòng mình chùng xuống khi nghĩ đến đôi mắt em buồn.</span>
+        <span class="line">Nhiều khi anh cứ nghĩ mình mạnh mẽ, nghĩ rằng chỉ cần yêu là đủ, nhưng anh quên mất tình yêu cũng cần được nâng niu bằng từng lời nói nhỏ.</span>
+        <span class="line">Yêu xa đã khó rồi, vậy mà có lúc anh còn làm khoảng cách ấy dài thêm bằng sự vụng về của mình. Nghĩ lại, anh thương em nhiều và cũng thấy có lỗi nhiều.</span>
+        <span class="line">Anh nhớ em, nhớ cả những lúc em giận anh. Vì ít nhất khi ấy anh vẫn biết trong lòng em còn có anh, còn mong anh hiểu em hơn một chút.</span>
+        <span class="line">Anh nhớ giọng em, nhớ cách em quan tâm, nhớ những tin nhắn tưởng bình thường mà giờ thiếu đi là cả một ngày của anh như trống mất một góc.</span>
+        <span class="line">Anh không dám hứa từ nay sẽ chẳng bao giờ làm em buồn, vì anh vẫn là một người còn nhiều thiếu sót. Nhưng anh hứa sẽ học cách lắng nghe em nhiều hơn.</span>
+        <span class="line">Hứa sẽ bớt nóng vội, bớt vô tâm, bớt để cái tôi của mình đứng trước cảm xúc của em. Vì với anh, Kim Anh quan trọng hơn mọi lần đúng sai.</span>
+        <span class="line">Chỉ mong em biết rằng, dù mình đang xa nhau, dù anh có vụng về đến đâu, trái tim anh vẫn luôn hướng về em, nhớ em và muốn giữ em thật lâu.</span>
+      </div>
+
+      <div class="signature">Anh xin lỗi, và anh nhớ em nhiều lắm, Kim Anh.</div>
     </div>
 
-    <script>
-      /*
-       * Settings
-       */
-      var settings = {
-        particles: {
-          length: 2000, // maximum amount of particles
-          duration: 2, // particle duration in sec
-          velocity: 100, // particle velocity in pixels/sec
-          effect: -1.3, // play with this for a nice effect
-          size: 13, // particle size in pixels
-        },
-      };
-      /*
-       * RequestAnimationFrame polyfill by Erik Möller
-       */
-      (function () {
-        var b = 0;
-        var c = ["ms", "moz", "webkit", "o"];
-        for (var a = 0; a < c.length && !window.requestAnimationFrame; ++a) {
-          window.requestAnimationFrame = window[c[a] + "RequestAnimationFrame"];
-          window.cancelAnimationFrame =
-            window[c[a] + "CancelAnimationFrame"] ||
-            window[c[a] + "CancelRequestAnimationFrame"];
-        }
-        if (!window.requestAnimationFrame) {
-          window.requestAnimationFrame = function (h, e) {
-            var d = new Date().getTime();
-            var f = Math.max(0, 16 - (d - b));
-            var g = window.setTimeout(function () {
-              h(d + f);
-            }, f);
-            b = d + f;
-            return g;
-          };
-        }
-        if (!window.cancelAnimationFrame) {
-          window.cancelAnimationFrame = function (d) {
-            clearTimeout(d);
-          };
-        }
-      })();
-      /*
-       * Point class
-       */
-      var Point = (function () {
-        function Point(x, y) {
-          this.x = typeof x !== "undefined" ? x : 0;
-          this.y = typeof y !== "undefined" ? y : 0;
-        }
-        Point.prototype.clone = function () {
-          return new Point(this.x, this.y);
-        };
-        Point.prototype.length = function (length) {
-          if (typeof length == "undefined")
-            return Math.sqrt(this.x * this.x + this.y * this.y);
-          this.normalize();
-          this.x *= length;
-          this.y *= length;
-          return this;
-        };
-        Point.prototype.normalize = function () {
-          var length = this.length();
-          this.x /= length;
-          this.y /= length;
-          return this;
-        };
-        return Point;
-      })();
-      /*
-       * Particle class
-       */
-      var Particle = (function () {
-        function Particle() {
-          this.position = new Point();
-          this.velocity = new Point();
-          this.acceleration = new Point();
-          this.age = 0;
-        }
-        Particle.prototype.initialize = function (x, y, dx, dy) {
-          this.position.x = x;
-          this.position.y = y;
-          this.velocity.x = dx;
-          this.velocity.y = dy;
-          this.acceleration.x = dx * settings.particles.effect;
-          this.acceleration.y = dy * settings.particles.effect;
-          this.age = 0;
-        };
-        Particle.prototype.update = function (deltaTime) {
-          this.position.x += this.velocity.x * deltaTime;
-          this.position.y += this.velocity.y * deltaTime;
-          this.velocity.x += this.acceleration.x * deltaTime;
-          this.velocity.y += this.acceleration.y * deltaTime;
-          this.age += deltaTime;
-        };
-        Particle.prototype.draw = function (context, image) {
-          function ease(t) {
-            return --t * t * t + 1;
-          }
-          var size = image.width * ease(this.age / settings.particles.duration);
-          context.globalAlpha = 1 - this.age / settings.particles.duration;
-          context.drawImage(
-            image,
-            this.position.x - size / 2,
-            this.position.y - size / 2,
-            size,
-            size
-          );
-        };
-        return Particle;
-      })();
-      /*
-       * ParticlePool class
-       */
-      var ParticlePool = (function () {
-        var particles,
-          firstActive = 0,
-          firstFree = 0,
-          duration = settings.particles.duration;
-
-        function ParticlePool(length) {
-          // create and populate particle pool
-          particles = new Array(length);
-          for (var i = 0; i < particles.length; i++)
-            particles[i] = new Particle();
-        }
-        ParticlePool.prototype.add = function (x, y, dx, dy) {
-          particles[firstFree].initialize(x, y, dx, dy);
-
-          // handle circular queue
-          firstFree++;
-          if (firstFree == particles.length) firstFree = 0;
-          if (firstActive == firstFree) firstActive++;
-          if (firstActive == particles.length) firstActive = 0;
-        };
-        ParticlePool.prototype.update = function (deltaTime) {
-          var i;
-
-          // update active particles
-          if (firstActive < firstFree) {
-            for (i = firstActive; i < firstFree; i++)
-              particles[i].update(deltaTime);
-          }
-          if (firstFree < firstActive) {
-            for (i = firstActive; i < particles.length; i++)
-              particles[i].update(deltaTime);
-            for (i = 0; i < firstFree; i++) particles[i].update(deltaTime);
-          }
-
-          // remove inactive particles
-          while (
-            particles[firstActive].age >= duration &&
-            firstActive != firstFree
-          ) {
-            firstActive++;
-            if (firstActive == particles.length) firstActive = 0;
-          }
-        };
-        ParticlePool.prototype.draw = function (context, image) {
-          // draw active particles
-          if (firstActive < firstFree) {
-            for (i = firstActive; i < firstFree; i++)
-              particles[i].draw(context, image);
-          }
-          if (firstFree < firstActive) {
-            for (i = firstActive; i < particles.length; i++)
-              particles[i].draw(context, image);
-            for (i = 0; i < firstFree; i++) particles[i].draw(context, image);
-          }
-        };
-        return ParticlePool;
-      })();
-      /*
-       * Putting it all together
-       */
-      (function (canvas) {
-        var context = canvas.getContext("2d"),
-          particles = new ParticlePool(settings.particles.length),
-          particleRate =
-            settings.particles.length / settings.particles.duration, // particles/sec
-          time;
-
-        // get point on heart with -PI <= t <= PI
-        function pointOnHeart(t) {
-          return new Point(
-            160 * Math.pow(Math.sin(t), 3),
-            130 * Math.cos(t) -
-              50 * Math.cos(2 * t) -
-              20 * Math.cos(3 * t) -
-              10 * Math.cos(4 * t) +
-              25
-          );
-        }
-
-        // creating the particle image using a dummy canvas
-        var image = (function () {
-          var canvas = document.createElement("canvas"),
-            context = canvas.getContext("2d");
-          canvas.width = settings.particles.size;
-          canvas.height = settings.particles.size;
-          // helper function to create the path
-          function to(t) {
-            var point = pointOnHeart(t);
-            point.x =
-              settings.particles.size / 2 +
-              (point.x * settings.particles.size) / 350;
-            point.y =
-              settings.particles.size / 2 -
-              (point.y * settings.particles.size) / 350;
-            return point;
-          }
-          // create the path
-          context.beginPath();
-          var t = -Math.PI;
-          var point = to(t);
-          context.moveTo(point.x, point.y);
-          while (t < Math.PI) {
-            t += 0.01; // baby steps!
-            point = to(t);
-            context.lineTo(point.x, point.y);
-          }
-          context.closePath();
-          // create the fill
-          context.fillStyle = "#FF5CA4";
-          context.fill();
-          // create the image
-          var image = new Image();
-          image.src = canvas.toDataURL();
-          return image;
-        })();
-
-        // render that thing!
-        function render() {
-          // next animation frame
-          requestAnimationFrame(render);
-
-          // update time
-          var newTime = new Date().getTime() / 1000,
-            deltaTime = newTime - (time || newTime);
-          time = newTime;
-
-          // clear canvas
-          context.clearRect(0, 0, canvas.width, canvas.height);
-
-          // create new particles
-          var amount = particleRate * deltaTime;
-          for (var i = 0; i < amount; i++) {
-            var pos = pointOnHeart(Math.PI - 2 * Math.PI * Math.random());
-            var dir = pos.clone().length(settings.particles.velocity);
-            particles.add(
-              canvas.width / 2 + pos.x,
-              canvas.height / 2 - pos.y,
-              dir.x,
-              -dir.y
-            );
-          }
-
-          // update and draw particles
-          particles.update(deltaTime);
-          particles.draw(context, image);
-        }
-
-        // handle (re-)sizing of the canvas
-        function onResize() {
-          canvas.width = canvas.clientWidth;
-          canvas.height = canvas.clientHeight;
-        }
-        window.onresize = onResize;
-
-        // delay rendering bootstrap
-        setTimeout(function () {
-          onResize();
-          render();
-        }, 10);
-      })(document.getElementById("pinkboard"));
-    </script>
-  </body>
+    <div class="hint">Mở bằng trình duyệt để xem hiệu ứng chữ và trái tim</div>
+  </div>
+</body>
 </html>
